@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
@@ -30,6 +30,7 @@ export function AppShell({
   children: ReactNode;
 }) {
   const pathname = usePathname();
+  const currentPath = pathname ?? "";
   const router = useRouter();
   const { setTheme } = useTheme();
   const [mobileNavOpen, setMobileNavOpen] = useState(false);
@@ -80,7 +81,7 @@ export function AppShell({
         <nav className="mt-8 space-y-2">
           {navItems.map((item) => {
             const Icon = item.icon;
-            const active = pathname === item.href || pathname.startsWith(`${item.href}/`);
+            const active = currentPath === item.href || currentPath.startsWith(`${item.href}/`);
             return (
               <Link
                 key={item.href}

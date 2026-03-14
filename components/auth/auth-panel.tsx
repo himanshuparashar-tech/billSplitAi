@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { useRouter, useSearchParams } from "next/navigation";
 import type { FormEvent } from "react";
@@ -23,6 +23,7 @@ function normalizeAuthMessage(message: string) {
 export function AuthPanel() {
   const router = useRouter();
   const searchParams = useSearchParams();
+  const redirectPath = searchParams?.get("next") ?? "/dashboard";
   const { toast } = useToast();
   const [mode, setMode] = useState<"login" | "signup">("login");
   const [loading, setLoading] = useState(false);
@@ -92,7 +93,7 @@ export function AuthPanel() {
 
         if (data.session) {
           toast("Account created. Redirecting to dashboard.");
-          router.replace(searchParams.get("next") || "/dashboard");
+          router.replace(redirectPath);
           router.refresh();
           return;
         }
@@ -116,8 +117,7 @@ export function AuthPanel() {
         }
 
         toast("Logged in successfully.");
-        const next = searchParams.get("next") || "/dashboard";
-        router.replace(next);
+        router.replace(redirectPath);
         router.refresh();
       }
     } catch (submitError) {
