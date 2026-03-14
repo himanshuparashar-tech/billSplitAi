@@ -96,19 +96,19 @@ export function ManageHouseActions({
 
   if (isEditing) {
     return (
-      <form onSubmit={handleSave} className="space-y-3 rounded-3xl border border-slate-200 bg-slate-50/80 p-4 dark:border-white/10 dark:bg-slate-900/70">
+      <form onSubmit={handleSave} className="app-muted-panel space-y-3 rounded-3xl border p-4">
         <label className="block">
-          <span className="mb-2 block text-xs font-semibold uppercase tracking-[0.18em] text-slate-500 dark:text-slate-400">
+          <span className="mb-2 block text-xs font-semibold uppercase tracking-[0.18em] text-[color:var(--text-muted)]">
             Rename house
           </span>
           <input
             value={name}
             onChange={(event) => setName(event.target.value)}
             disabled={disabled || loading !== false}
-            className="w-full rounded-2xl border border-slate-200 px-4 py-3 outline-none transition focus:border-brand"
+            className="app-input"
           />
         </label>
-        {message ? <p className="text-sm text-slate-600 dark:text-slate-300">{message}</p> : null}
+        {message ? <p className="text-sm text-[color:var(--text-secondary)]">{message}</p> : null}
         <div className="flex flex-wrap gap-2">
           <Button type="submit" disabled={disabled || loading !== false || !name.trim()}>
             {loading === "save" ? "Saving..." : "Save changes"}
@@ -143,7 +143,7 @@ export function ManageHouseActions({
           {loading === "delete" ? "Deleting..." : "Delete"}
         </Button>
       </div>
-      {message ? <p className="text-sm text-slate-600 dark:text-slate-300">{message}</p> : null}
+      {message ? <p className="text-sm text-[color:var(--text-secondary)]">{message}</p> : null}
     </div>
   );
 }

@@ -47,17 +47,17 @@ export function AddMemberForm({ houseId, disabled }: { houseId: string; disabled
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
       <label className="block">
-        <span className="mb-2 block text-sm font-medium text-slate-700">Room name</span>
+        <span className="app-label mb-2 block text-sm font-medium">Room name</span>
         <input
           value={name}
           onChange={(event) => setName(event.target.value)}
           required
           disabled={disabled || loading}
           placeholder="House 101"
-          className="w-full rounded-2xl border border-slate-200 px-4 py-3 outline-none transition focus:border-brand"
+          className="app-input"
         />
       </label>
-      {message ? <p className="text-sm text-slate-600">{message}</p> : null}
+      {message ? <p className="text-sm text-[color:var(--text-secondary)]">{message}</p> : null}
       <Button type="submit" disabled={disabled || loading || !name.trim()}>
         {loading ? "Saving..." : "Add room"}
       </Button>

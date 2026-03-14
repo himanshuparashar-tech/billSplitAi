@@ -377,7 +377,7 @@ export async function getBillSnapshotById(
   }
 
   const viewer = options?.viewer ?? (await getViewer());
-  const serverViewer: Viewer = viewer ?? { id: "", email: "", isDemo: false };
+  const serverViewer: Viewer = viewer ?? { id: "", email: "", name: "", isDemo: false };
   const supabase = await createSupabaseServerClient();
 
   if (!supabase) {
@@ -606,3 +606,4 @@ export async function getHistoryData(): Promise<HistoryData> {
     }))
   };
 }
+

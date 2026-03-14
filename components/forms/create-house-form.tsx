@@ -48,17 +48,17 @@ export function CreateHouseForm({ disabled }: { disabled: boolean }) {
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
       <label className="block">
-        <span className="mb-2 block text-sm font-medium text-slate-700">House name</span>
+        <span className="app-label mb-2 block text-sm font-medium">House name</span>
         <input
           value={name}
           onChange={(event) => setName(event.target.value)}
           required
           disabled={disabled || loading}
           placeholder="Pitru Chaya"
-          className="w-full rounded-2xl border border-slate-200 px-4 py-3 outline-none transition focus:border-brand"
+          className="app-input"
         />
       </label>
-      {message ? <p className="text-sm text-slate-600">{message}</p> : null}
+      {message ? <p className="text-sm text-[color:var(--text-secondary)]">{message}</p> : null}
       <Button type="submit" disabled={disabled || loading || !name.trim()}>
         {loading ? "Creating..." : "Create house"}
       </Button>

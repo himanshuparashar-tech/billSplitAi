@@ -13,7 +13,7 @@ export function Card({
   return (
     <div
       className={cn(
-        "rounded-[28px] border border-white/70 bg-white/88 p-6 text-slate-900 shadow-panel backdrop-blur transition duration-300 hover:-translate-y-0.5 hover:shadow-[0_28px_70px_-34px_rgba(23,52,111,0.34)] dark:border-white/10 dark:bg-slate-900/82 dark:text-slate-100 dark:hover:shadow-[0_28px_70px_-34px_rgba(2,6,23,0.75)]",
+        "rounded-[28px] border border-[color:var(--border-soft)] bg-[color:var(--bg-card)] p-6 text-[color:var(--text-primary)] shadow-panel backdrop-blur transition duration-300 hover:-translate-y-0.5 hover:shadow-[0_28px_70px_-34px_rgba(23,52,111,0.34)] dark:hover:shadow-[0_28px_70px_-34px_rgba(2,6,23,0.75)]",
         className
       )}
       {...props}

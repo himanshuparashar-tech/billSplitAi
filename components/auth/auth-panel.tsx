@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useRouter, useSearchParams } from "next/navigation";
 import type { FormEvent } from "react";
@@ -130,17 +130,17 @@ export function AuthPanel() {
   }
 
   return (
-    <Card className="w-full max-w-lg border-brand/10 bg-white">
-      <div className="mb-8 flex rounded-2xl bg-slate-100 p-1">
+    <Card className="w-full max-w-lg border-brand/10">
+      <div className="app-segmented mb-8 flex rounded-2xl p-1">
         <button
-          className={`flex-1 rounded-2xl px-4 py-2 text-sm font-semibold ${mode === "login" ? "bg-white text-slate-950 shadow-sm" : "text-slate-500"}`}
+          className={`flex-1 rounded-2xl px-4 py-2 text-sm font-semibold transition ${mode === "login" ? "app-segmented-button-active" : "app-segmented-button"}`}
           onClick={() => setMode("login")}
           type="button"
         >
           Login
         </button>
         <button
-          className={`flex-1 rounded-2xl px-4 py-2 text-sm font-semibold ${mode === "signup" ? "bg-white text-slate-950 shadow-sm" : "text-slate-500"}`}
+          className={`flex-1 rounded-2xl px-4 py-2 text-sm font-semibold transition ${mode === "signup" ? "app-segmented-button-active" : "app-segmented-button"}`}
           onClick={() => setMode("signup")}
           type="button"
         >
@@ -151,47 +151,47 @@ export function AuthPanel() {
       <form className="space-y-4" onSubmit={handleSubmit}>
         {mode === "signup" ? (
           <label className="block">
-            <span className="mb-2 block text-sm font-medium text-slate-700">Full name</span>
+            <span className="app-label mb-2 block text-sm font-medium">Full name</span>
             <input
               required
               name="fullName"
-              className="w-full rounded-2xl border border-slate-200 px-4 py-3 outline-none transition focus:border-brand"
+              className="app-input"
               placeholder="House admin"
             />
           </label>
         ) : null}
 
         <label className="block">
-          <span className="mb-2 block text-sm font-medium text-slate-700">Email</span>
+          <span className="app-label mb-2 block text-sm font-medium">Email</span>
           <input
             required
             type="email"
             name="email"
-            className="w-full rounded-2xl border border-slate-200 px-4 py-3 outline-none transition focus:border-brand"
+            className="app-input"
             placeholder="you@example.com"
           />
         </label>
 
         <label className="block">
-          <span className="mb-2 block text-sm font-medium text-slate-700">Password</span>
+          <span className="app-label mb-2 block text-sm font-medium">Password</span>
           <input
             required
             type="password"
             minLength={6}
             name="password"
-            className="w-full rounded-2xl border border-slate-200 px-4 py-3 outline-none transition focus:border-brand"
+            className="app-input"
             placeholder="Minimum 6 characters"
           />
         </label>
 
         {mode === "signup" ? (
-          <p className="rounded-2xl bg-slate-50 px-4 py-3 text-sm text-slate-600">
+          <p className="app-notice-info rounded-2xl px-4 py-3 text-sm">
             If Supabase email confirmation is enabled, signup will create the account but you must verify the email before the first login.
           </p>
         ) : null}
 
-        {error ? <p className="rounded-2xl bg-rose-50 px-4 py-3 text-sm text-rose-700">{error}</p> : null}
-        {success ? <p className="rounded-2xl bg-emerald-50 px-4 py-3 text-sm text-emerald-700">{success}</p> : null}
+        {error ? <p className="app-notice-error rounded-2xl px-4 py-3 text-sm">{error}</p> : null}
+        {success ? <p className="app-notice-success rounded-2xl px-4 py-3 text-sm">{success}</p> : null}
 
         <Button className="w-full" type="submit" disabled={loading}>
           {loading ? "Please wait..." : mode === "login" ? "Sign in" : "Create account"}

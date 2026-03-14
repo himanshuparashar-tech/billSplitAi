@@ -12,9 +12,9 @@ const styles: Record<NonNullable<ButtonProps["variant"]>, string> = {
   primary:
     "bg-gradient-to-r from-brand via-brand-dark to-accent text-white shadow-lg shadow-accent/20 hover:from-brand-dark hover:via-accent hover:to-ink focus-visible:outline-accent disabled:bg-slate-300 dark:disabled:bg-slate-700",
   secondary:
-    "bg-white text-ink ring-1 ring-accent/15 hover:bg-accent-soft focus-visible:outline-accent/40 dark:bg-slate-900 dark:text-slate-100 dark:ring-white/10 dark:hover:bg-slate-800",
+    "bg-[color:var(--bg-card-strong)] text-[color:var(--text-primary)] ring-1 ring-accent/15 hover:bg-[color:var(--bg-muted)] focus-visible:outline-accent/40 dark:ring-white/10",
   ghost:
-    "bg-transparent text-ink hover:bg-accent-soft/70 focus-visible:outline-accent/40 dark:text-slate-100 dark:hover:bg-slate-800/80",
+    "bg-transparent text-[color:var(--text-primary)] hover:bg-[color:var(--bg-muted)] focus-visible:outline-accent/40",
   danger:
     "bg-rose-600 text-white hover:bg-rose-700 focus-visible:outline-rose-500"
 };

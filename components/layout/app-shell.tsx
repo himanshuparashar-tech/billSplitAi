@@ -9,6 +9,7 @@ import { BarChart3, Building2, History, LogOut, Menu, ReceiptText, X } from "luc
 import { Button } from "@/components/shared/button";
 import { Logo } from "@/components/shared/logo";
 import { ThemeToggle } from "@/components/shared/theme-toggle";
+import { useTheme } from "@/components/shared/theme-provider";
 import { createSupabaseBrowserClient } from "@/lib/supabase/browser";
 import { cn } from "@/lib/utils";
 import type { House, Viewer } from "@/types";
@@ -30,6 +31,7 @@ export function AppShell({
 }) {
   const pathname = usePathname();
   const router = useRouter();
+  const { setTheme } = useTheme();
   const [mobileNavOpen, setMobileNavOpen] = useState(false);
 
   useEffect(() => {
@@ -50,6 +52,8 @@ export function AppShell({
   }, [mobileNavOpen]);
 
   async function handleLogout() {
+    setTheme("light");
+
     if (viewer.isDemo) {
       router.push("/");
       return;
@@ -101,8 +105,8 @@ export function AppShell({
               <ReceiptText className="h-5 w-5" />
             </div>
             <div className="min-w-0">
-              <p className="text-sm font-semibold text-white break-words max-w-xs sm:text-base md:text-lg lg:text-sm xl:text-base">{viewer.name || "Admin"}</p>
-              <p className="text-xs text-blue-100/75 break-words max-w-xs ">{viewer.email}</p>
+              <p className="max-w-xs break-words text-sm font-semibold text-white sm:text-base md:text-lg lg:text-sm xl:text-base">{viewer.name || "Admin"}</p>
+              <p className="max-w-xs break-words text-xs text-blue-100/75">{viewer.email}</p>
             </div>
           </div>
           <Button variant="secondary" className="mt-4 w-full bg-white text-ink hover:bg-blue-50" onClick={handleLogout}>

@@ -4,6 +4,24 @@
 
 :root {
   color-scheme: light;
+  --bg-primary: #f7fbff;
+  --bg-secondary: rgba(255, 255, 255, 0.82);
+  --bg-card: rgba(255, 255, 255, 0.88);
+  --bg-card-strong: #ffffff;
+  --bg-muted: #f3f7fe;
+  --bg-soft: #edf4ff;
+  --text-primary: #17346f;
+  --text-secondary: #4f648b;
+  --text-muted: #7185a9;
+  --border-color: rgba(203, 213, 225, 0.9);
+  --border-soft: rgba(255, 255, 255, 0.7);
+  --overlay: rgba(2, 6, 23, 0.45);
+  --hero-text: #ffffff;
+  --hero-muted: rgba(219, 234, 254, 0.88);
+  --chart-grid: #d9e6ff;
+  --chart-axis: #64748b;
+  --chart-tooltip-bg: rgba(255, 255, 255, 0.96);
+  --chart-tooltip-border: rgba(203, 213, 225, 0.92);
   --app-text: #17346f;
   --app-bg:
     radial-gradient(circle at top right, rgba(89, 193, 79, 0.2), transparent 26%),
@@ -15,6 +33,24 @@
 
 .dark {
   color-scheme: dark;
+  --bg-primary: #020617;
+  --bg-secondary: rgba(15, 23, 42, 0.86);
+  --bg-card: rgba(15, 23, 42, 0.82);
+  --bg-card-strong: #0f172a;
+  --bg-muted: rgba(30, 41, 59, 0.88);
+  --bg-soft: rgba(15, 23, 42, 0.94);
+  --text-primary: #f8fafc;
+  --text-secondary: #cbd5e1;
+  --text-muted: #94a3b8;
+  --border-color: rgba(255, 255, 255, 0.1);
+  --border-soft: rgba(255, 255, 255, 0.1);
+  --overlay: rgba(2, 6, 23, 0.62);
+  --hero-text: #ffffff;
+  --hero-muted: rgba(191, 219, 254, 0.86);
+  --chart-grid: rgba(148, 163, 184, 0.18);
+  --chart-axis: #94a3b8;
+  --chart-tooltip-bg: rgba(2, 6, 23, 0.96);
+  --chart-tooltip-border: rgba(255, 255, 255, 0.1);
   --app-text: #e2e8f0;
   --app-bg:
     radial-gradient(circle at top right, rgba(89, 193, 79, 0.18), transparent 22%),
@@ -47,7 +83,11 @@ html {
 body {
   min-height: 100vh;
   background: var(--app-bg);
-  color: var(--app-text);
+  color: var(--text-primary);
+  transition:
+    background-color 300ms ease,
+    color 300ms ease,
+    border-color 300ms ease;
 }
 
 * {
@@ -62,7 +102,30 @@ a {
 input,
 select,
 textarea {
-  @apply dark:border-white/10 dark:bg-slate-950/60 dark:text-slate-100 dark:placeholder:text-slate-500;
+  transition:
+    background-color 300ms ease,
+    color 300ms ease,
+    border-color 300ms ease;
+}
+
+button,
+svg,
+table,
+th,
+td,
+div,
+section,
+article,
+aside,
+main,
+header,
+footer {
+  transition:
+    background-color 300ms ease,
+    color 300ms ease,
+    border-color 300ms ease,
+    fill 300ms ease,
+    stroke 300ms ease;
 }
 
 ::selection {
@@ -145,6 +208,56 @@ textarea {
   background-image:
     linear-gradient(to right, rgba(148, 163, 184, 0.08) 1px, transparent 1px),
     linear-gradient(to bottom, rgba(89, 193, 79, 0.08) 1px, transparent 1px);
+}
+
+@layer components {
+  .app-input {
+    @apply w-full rounded-2xl border px-4 py-3 outline-none transition focus:border-brand;
+    border-color: var(--border-color);
+    background: var(--bg-secondary);
+    color: var(--text-primary);
+  }
+
+  .app-input::placeholder {
+    color: var(--text-muted);
+  }
+
+  .app-label {
+    color: var(--text-secondary);
+  }
+
+  .app-muted-panel {
+    border-color: var(--border-color);
+    background: var(--bg-muted);
+    color: var(--text-secondary);
+  }
+
+  .app-segmented {
+    background: var(--bg-muted);
+  }
+
+  .app-segmented-button {
+    color: var(--text-muted);
+  }
+
+  .app-segmented-button-active {
+    background: var(--bg-card-strong);
+    color: var(--text-primary);
+    box-shadow: 0 12px 28px -18px rgba(23, 52, 111, 0.5);
+  }
+
+  .app-notice-info {
+    background: var(--bg-muted);
+    color: var(--text-secondary);
+  }
+
+  .app-notice-error {
+    @apply bg-rose-50 text-rose-700 dark:bg-rose-500/10 dark:text-rose-200;
+  }
+
+  .app-notice-success {
+    @apply bg-emerald-50 text-emerald-700 dark:bg-emerald-500/10 dark:text-emerald-200;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

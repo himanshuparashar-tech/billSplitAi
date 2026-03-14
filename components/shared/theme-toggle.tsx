@@ -15,7 +15,7 @@ export function ThemeToggle({ light = false }: { light?: boolean }) {
       onClick={toggleTheme}
       className={light
         ? "inline-flex h-11 w-11 items-center justify-center rounded-2xl border border-white/15 bg-white/10 text-white transition hover:bg-white/20"
-        : "inline-flex h-11 w-11 items-center justify-center rounded-2xl border border-slate-200 bg-white text-slate-700 transition hover:bg-slate-50 dark:border-white/10 dark:bg-slate-900/80 dark:text-slate-100 dark:hover:bg-slate-800"}
+        : "inline-flex h-11 w-11 items-center justify-center rounded-2xl border border-[color:var(--border-color)] bg-[color:var(--bg-card)] text-[color:var(--text-secondary)] transition hover:bg-[color:var(--bg-muted)]"}
     >
       {isDark ? <SunMedium className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
     </button>

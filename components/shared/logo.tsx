@@ -9,14 +9,14 @@ export function Logo({ tone = "dark" }: { tone?: "dark" | "light" | "white" }) {
   return (
     <Link
       href="/"
-      className={cn("inline-flex items-center gap-3 font-semibold", isLight ? "text-white" : "text-slate-950 dark:text-slate-50")}
+      className={cn("inline-flex items-center gap-3 font-semibold", isLight ? "text-white" : "text-slate-900 dark:text-slate-900")}
     >
       <span className="relative block h-11 w-11 overflow-hidden rounded-2xl bg-white ring-1 ring-white/20">
         <Image src="/images/logo.png" alt="SplitBill AI logo" fill className="object-contain p-1.5" priority />
       </span>
       <span className="flex flex-col leading-tight">
-        <span>SplitBill AI</span>
-        <span className={cn("text-xs font-medium", isLight ? "text-blue-100" : "text-slate-500 dark:text-slate-400")}>
+        <span className={isLight ? "text-white" : "text-blue-900"}>SplitBill AI</span>
+        <span className={cn("text-xs font-medium", isLight ? "text-white/90" : "text-slate-500 dark:text-slate-400")}>
           Smart house electricity billing
         </span>
       </span>

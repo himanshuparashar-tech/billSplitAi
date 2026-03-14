@@ -30,7 +30,7 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    const stored = window.localStorage.getItem(STORAGE_KEY);
+    const stored = window.localStorage.getItem(STORAGE_KEY) || window.localStorage.getItem("theme");
     const initialTheme = stored === "dark" || stored === "light" ? stored : "light";
     setThemeState(initialTheme);
     applyTheme(initialTheme);
@@ -40,6 +40,7 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
   function setTheme(nextTheme: Theme) {
     setThemeState(nextTheme);
     window.localStorage.setItem(STORAGE_KEY, nextTheme);
+    window.localStorage.setItem("theme", nextTheme);
     applyTheme(nextTheme);
   }
 

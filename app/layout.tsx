@@ -1,5 +1,5 @@
-﻿import type { ReactNode } from "react";
-import type { Metadata } from "next";
+﻿import type { Metadata } from "next";
+import type { ReactNode } from "react";
 import { Manrope } from "next/font/google";
 
 import "@/app/globals.css";
@@ -8,6 +8,17 @@ import { ToastProvider } from "@/components/shared/toast-provider";
 import { appConfig } from "@/lib/config";
 
 const manrope = Manrope({ subsets: ["latin"] });
+const themeInitScript = `
+  (function () {
+    try {
+      var stored = localStorage.getItem("splitbill-theme") || localStorage.getItem("theme");
+      var theme = stored === "dark" || stored === "light" ? stored : "light";
+      var root = document.documentElement;
+      root.classList.toggle("dark", theme === "dark");
+      root.style.colorScheme = theme;
+    } catch (error) {}
+  })();
+`;
 
 export const metadata: Metadata = {
   title: appConfig.name,
@@ -25,7 +36,10 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={manrope.className}>
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
+      </head>
+      <body className={`${manrope.className} bg-[color:var(--bg-primary)] text-[color:var(--text-primary)] transition-colors duration-300`}>
         <ThemeProvider>
           <ToastProvider>{children}</ToastProvider>
         </ThemeProvider>

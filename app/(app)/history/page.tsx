@@ -1,4 +1,4 @@
-import Link from "next/link";
+﻿import Link from "next/link";
 
 import { BillSnapshotCard } from "@/components/billing/bill-snapshot-card";
 import { ReopenBillButton } from "@/components/billing/reopen-bill-button";
@@ -33,18 +33,18 @@ export default async function HistoryPage({ searchParams }: { searchParams?: { b
       </PageHero>
 
       <section className="grid gap-6 lg:grid-cols-[0.82fr_1.18fr] xl:grid-cols-[0.74fr_1.26fr]">
-        <Card className="animate-fade-up border-accent/10 bg-white lg:sticky lg:top-4 lg:self-start">
+        <Card className="animate-fade-up border-accent/10 lg:sticky lg:top-4 lg:self-start">
           <div className="flex items-center justify-between gap-3">
             <div>
-              <h2 className="text-xl font-semibold text-ink">Saved months</h2>
-              <p className="text-sm text-slate-500">Tap any month to load it on the right.</p>
+              <h2 className="text-xl font-semibold text-[color:var(--text-primary)]">Saved months</h2>
+              <p className="text-sm text-[color:var(--text-secondary)]">Tap any month to load it on the right.</p>
             </div>
             <span className="rounded-full bg-accent-soft px-3 py-1 text-xs font-semibold text-accent">
               {history.bills.length} items
             </span>
           </div>
 
-          <div className="mt-5 space-y-3 max-h-[550px] overflow-y-auto">
+          <div className="mt-5 max-h-[550px] space-y-3 overflow-y-auto">
             {history.bills.length ? (
               history.bills.map((bill, index) => {
                 const selected = bill.id === selectedId;
@@ -52,27 +52,27 @@ export default async function HistoryPage({ searchParams }: { searchParams?: { b
                   <Link
                     key={bill.id}
                     href={`/history?billId=${bill.id}`}
-                    className={`block rounded-3xl border px-4 py-4 transition ${selected ? "border-accent bg-accent-soft/70 shadow-sm" : "border-slate-200 bg-white hover:border-accent/25 hover:bg-accent-soft/30"}`}
+                    className={`block rounded-3xl border px-4 py-4 transition ${selected ? "border-accent bg-accent-soft/70 shadow-sm dark:bg-accent/10" : "border-[color:var(--border-color)] bg-[color:var(--bg-card-strong)] hover:border-accent/25 hover:bg-accent-soft/30 dark:hover:bg-accent/10"}`}
                   >
                     <div className="flex items-start justify-between gap-4">
                       <div>
-                        <p className="text-sm font-semibold text-ink">{formatMonthLabel(bill.billing_month)}</p>
-                        <p className="mt-1 text-sm text-slate-500">{bill.house_name}</p>
+                        <p className="text-sm font-semibold text-[color:var(--text-primary)]">{formatMonthLabel(bill.billing_month)}</p>
+                        <p className="mt-1 text-sm text-[color:var(--text-secondary)]">{bill.house_name}</p>
                       </div>
                       <span
-                        className={`rounded-full px-2.5 py-1 text-xs font-semibold ${bill.status === "finalized" ? "bg-brand-soft text-brand-dark" : "bg-slate-100 text-slate-600"}`}
+                        className={`rounded-full px-2.5 py-1 text-xs font-semibold ${bill.status === "finalized" ? "bg-brand-soft text-brand-dark dark:bg-brand/15 dark:text-brand" : "app-muted-panel border text-[color:var(--text-secondary)]"}`}
                       >
                         {bill.status}
                       </span>
                     </div>
                     <div className="mt-4 grid gap-3 sm:grid-cols-2">
                       <div>
-                        <p className="text-[11px] font-medium uppercase tracking-[0.18em] text-slate-400">Total bill</p>
-                        <p className="mt-1 text-sm font-semibold text-ink">{formatCurrency(bill.main_bill_amount)}</p>
+                        <p className="text-[11px] font-medium uppercase tracking-[0.18em] text-[color:var(--text-muted)]">Total bill</p>
+                        <p className="mt-1 text-sm font-semibold text-[color:var(--text-primary)]">{formatCurrency(bill.main_bill_amount)}</p>
                       </div>
                       <div>
-                        <p className="text-[11px] font-medium uppercase tracking-[0.18em] text-slate-400">Order</p>
-                        <p className="mt-1 text-sm text-slate-600">{index === 0 ? "Newest month" : `Month ${history.bills.length - index}`}</p>
+                        <p className="text-[11px] font-medium uppercase tracking-[0.18em] text-[color:var(--text-muted)]">Order</p>
+                        <p className="mt-1 text-sm text-[color:var(--text-secondary)]">{index === 0 ? "Newest month" : `Month ${history.bills.length - index}`}</p>
                       </div>
                     </div>
                   </Link>
@@ -86,14 +86,14 @@ export default async function HistoryPage({ searchParams }: { searchParams?: { b
 
         {selectedBill ? (
           <div className="space-y-4">
-            <Card className="animate-fade-up border-brand/10 bg-white" style={{ animationDelay: "80ms" }}>
+            <Card className="animate-fade-up border-brand/10" style={{ animationDelay: "80ms" }}>
               <div className="flex flex-col gap-4 xl:flex-row xl:items-start xl:justify-between">
                 <div>
                   <p className="text-sm font-semibold uppercase tracking-[0.18em] text-accent">Selected bill</p>
-                  <h2 className="mt-2 text-2xl font-semibold text-ink">{selectedBill.house.name}</h2>
-                  <p className="mt-2 text-sm text-slate-500">{formatMonthLabel(selectedBill.billing_month)}</p>
+                  <h2 className="mt-2 text-2xl font-semibold text-[color:var(--text-primary)]">{selectedBill.house.name}</h2>
+                  <p className="mt-2 text-sm text-[color:var(--text-secondary)]">{formatMonthLabel(selectedBill.billing_month)}</p>
                   {selectedBill.status === "finalized" ? (
-                    <p className="mt-2 text-sm text-slate-500">
+                    <p className="mt-2 text-sm text-[color:var(--text-secondary)]">
                       Public link:{" "}
                       <Link
                         href={`/bill/${selectedBill.id}`}
@@ -103,7 +103,7 @@ export default async function HistoryPage({ searchParams }: { searchParams?: { b
                       </Link>
                     </p>
                   ) : (
-                    <p className="mt-2 text-sm text-slate-500">Draft months stay private until finalized.</p>
+                    <p className="mt-2 text-sm text-[color:var(--text-secondary)]">Draft months stay private until finalized.</p>
                   )}
                 </div>
 
@@ -112,7 +112,7 @@ export default async function HistoryPage({ searchParams }: { searchParams?: { b
                   {selectedBill.status === "finalized" ? <ExportButtons bill={selectedBill} targetId="history-selected-bill" /> : null}
                   <Link
                     href={`/houses/${selectedBill.house.id}/billing`}
-                    className="inline-flex items-center justify-center rounded-2xl bg-accent-soft px-4 py-2.5 text-sm font-semibold text-accent ring-1 ring-accent/15 transition hover:bg-accent-soft/80"
+                    className="inline-flex items-center justify-center rounded-2xl bg-accent-soft px-4 py-2.5 text-sm font-semibold text-accent ring-1 ring-accent/15 transition hover:bg-accent-soft/80 dark:bg-accent/10 dark:text-blue-200 dark:ring-white/10"
                   >
                     Open billing workspace
                   </Link>
@@ -120,21 +120,21 @@ export default async function HistoryPage({ searchParams }: { searchParams?: { b
               </div>
 
               <div className="mt-5 grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
-                <div className="rounded-3xl bg-brand-soft/60 p-4">
-                  <p className="text-xs uppercase tracking-wide text-slate-500">Total bill</p>
-                  <p className="mt-2 text-lg font-semibold text-ink">{formatCurrency(selectedBill.main_bill_amount)}</p>
+                <div className="rounded-3xl bg-brand-soft/60 p-4 dark:bg-brand/10">
+                  <p className="text-xs uppercase tracking-wide text-[color:var(--text-secondary)]">Total bill</p>
+                  <p className="mt-2 text-lg font-semibold text-[color:var(--text-primary)]">{formatCurrency(selectedBill.main_bill_amount)}</p>
                 </div>
-                <div className="rounded-3xl bg-accent-soft/60 p-4">
-                  <p className="text-xs uppercase tracking-wide text-slate-500">Price per unit</p>
-                  <p className="mt-2 text-lg font-semibold text-ink">{formatCurrency(selectedBill.price_per_unit)}</p>
+                <div className="rounded-3xl bg-accent-soft/60 p-4 dark:bg-accent/10">
+                  <p className="text-xs uppercase tracking-wide text-[color:var(--text-secondary)]">Price per unit</p>
+                  <p className="mt-2 text-lg font-semibold text-[color:var(--text-primary)]">{formatCurrency(selectedBill.price_per_unit)}</p>
                 </div>
-                <div className="rounded-3xl bg-slate-50 p-4">
-                  <p className="text-xs uppercase tracking-wide text-slate-500">Tracked rooms</p>
-                  <p className="mt-2 text-lg font-semibold text-ink">{selectedBill.results.length}</p>
+                <div className="app-muted-panel rounded-3xl border p-4">
+                  <p className="text-xs uppercase tracking-wide text-[color:var(--text-secondary)]">Tracked rooms</p>
+                  <p className="mt-2 text-lg font-semibold text-[color:var(--text-primary)]">{selectedBill.results.length}</p>
                 </div>
-                <div className="rounded-3xl bg-slate-50 p-4">
-                  <p className="text-xs uppercase tracking-wide text-slate-500">Motor units</p>
-                  <p className="mt-2 text-lg font-semibold text-ink">{selectedBill.motor_units.toFixed(2)}</p>
+                <div className="app-muted-panel rounded-3xl border p-4">
+                  <p className="text-xs uppercase tracking-wide text-[color:var(--text-secondary)]">Motor units</p>
+                  <p className="mt-2 text-lg font-semibold text-[color:var(--text-primary)]">{selectedBill.motor_units.toFixed(2)}</p>
                 </div>
               </div>
             </Card>
