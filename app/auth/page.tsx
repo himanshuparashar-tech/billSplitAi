@@ -1,4 +1,4 @@
-import { redirect } from "next/navigation";
+﻿import { redirect } from "next/navigation";
 import { Suspense } from "react";
 
 import { AuthPanel } from "@/components/auth/auth-panel";
