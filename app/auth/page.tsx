@@ -8,6 +8,8 @@ import { ThemeToggle } from "@/components/shared/theme-toggle";
 import { getViewer } from "@/lib/data";
 import { isSupabaseConfigured } from "@/lib/config";
 
+export const dynamic = "force-dynamic";
+
 export default async function AuthPage() {
   const viewer = await getViewer();
 
