@@ -212,7 +212,8 @@ footer {
 
 @layer components {
   .app-input {
-    @apply w-full rounded-2xl border px-4 py-3 outline-none transition focus:border-brand;
+    @apply w-full rounded-2xl border outline-none transition focus:border-brand;
+    padding: 13px 17px;
     border-color: var(--border-color);
     background: var(--bg-secondary);
     color: var(--text-primary);
@@ -274,3 +275,4 @@ footer {
     scroll-behavior: auto !important;
   }
 }
+
