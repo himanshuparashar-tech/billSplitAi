@@ -1,15 +1,11 @@
-﻿import nextDynamic from "next/dynamic";
 import { redirect } from "next/navigation";
+import { Suspense } from "react";
 
+import { AuthPanel } from "@/components/auth/auth-panel";
 import { DemoBanner } from "@/components/shared/demo-banner";
 import { Logo } from "@/components/shared/logo";
 import { getViewer } from "@/lib/data";
 import { isSupabaseConfigured } from "@/lib/config";
-
-const AuthPanel = nextDynamic(() => import("@/components/auth/auth-panel").then((m) => ({ default: m.AuthPanel })), {
-  ssr: false,
-  loading: () => <div className="h-[400px] w-full max-w-lg animate-pulse rounded-2xl bg-slate-200/50 dark:bg-slate-800/50" />
-});
 
 export const dynamic = "force-dynamic";
 
@@ -45,7 +41,9 @@ export default async function AuthPage() {
             {!isSupabaseConfigured ? <div className="mt-6"><DemoBanner /></div> : null}
           </div>
           <div className="flex items-center justify-center bg-white px-6 py-10 dark:bg-slate-950 sm:px-10">
-            <AuthPanel />
+            <Suspense fallback={<div className="h-[400px] w-full max-w-lg animate-pulse rounded-2xl bg-slate-200/50 dark:bg-slate-800/50" />}>
+              <AuthPanel />
+            </Suspense>
           </div>
         </div>
       </div>
