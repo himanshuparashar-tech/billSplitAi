@@ -65,7 +65,7 @@ export default async function PublicBillPage({ params }: { params: { billId: str
                   {bill.results.map((result) => (
                     <tr key={result.id} className="bg-white dark:bg-slate-950/92">
                       <td className="px-5 py-4 font-semibold text-slate-950 dark:text-slate-50">{result.member_name_snapshot}</td>
-                      <td className="px-5 py-4 text-slate-600 dark:text-slate-300">{result.final_units.toFixed(2)} units</td>
+                      <td className="px-5 py-4 text-slate-600 dark:text-slate-300 ">{result.final_units.toFixed(2)} units</td>
                       <td className="px-5 py-4 font-semibold text-slate-950 dark:text-slate-50">{formatCurrency(result.bill_amount)}</td>
                     </tr>
                   ))}

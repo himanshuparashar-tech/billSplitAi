@@ -563,6 +563,47 @@ export async function getHouseBillingData(houseId: string): Promise<HouseBilling
   };
 }
 
+export async function getDraftsData(): Promise<HistoryData> {
+  const viewer = (await getViewer()) ?? demoViewer;
+  const houses = await getHousesForViewer(viewer);
+
+  if (viewer.isDemo) {
+    return { viewer, houses, bills: [] };
+  }
+
+  const supabase = await createSupabaseServerClient();
+
+  if (!supabase) {
+    return { viewer, houses, bills: [] };
+  }
+
+  const houseIds = houses.map((house) => house.id);
+
+  if (!houseIds.length) {
+    return { viewer, houses, bills: [] };
+  }
+
+  const { data, error } = await supabase
+    .from("bills")
+    .select("*, houses(name)")
+    .in("house_id", houseIds)
+    .eq("status", "draft")
+    .order("billing_month", { ascending: false });
+
+  if (error) {
+    throw new Error(error.message);
+  }
+
+  return {
+    viewer,
+    houses,
+    bills: (data ?? []).map((bill: any) => ({
+      ...bill,
+      house_name: bill.houses?.name ?? "House"
+    }))
+  };
+}
+
 export async function getHistoryData(): Promise<HistoryData> {
   const viewer = (await getViewer()) ?? demoViewer;
   const houses = await getHousesForViewer(viewer);

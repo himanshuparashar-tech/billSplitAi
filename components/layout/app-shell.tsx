@@ -4,7 +4,7 @@ import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import type { ReactNode } from "react";
 import { useEffect, useState } from "react";
-import { BarChart3, Building2, History, LogOut, Menu, ReceiptText, X } from "lucide-react";
+import { BarChart3, Building2, FilePen, History, LogOut, Menu, ReceiptText, X } from "lucide-react";
 
 import { Button } from "@/components/shared/button";
 import { Logo } from "@/components/shared/logo";
@@ -17,7 +17,8 @@ import type { House, Viewer } from "@/types";
 const navItems = [
   { href: "/dashboard", label: "Dashboard", icon: BarChart3 },
   { href: "/houses", label: "Houses", icon: Building2 },
-  { href: "/history", label: "History", icon: History }
+  { href: "/history", label: "History", icon: History },
+  { href: "/drafts", label: "Drafts", icon: FilePen }
 ];
 
 export function AppShell({

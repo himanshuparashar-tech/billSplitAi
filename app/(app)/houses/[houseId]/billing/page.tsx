@@ -6,11 +6,20 @@ import { Card } from "@/components/shared/card";
 import { DemoBanner } from "@/components/shared/demo-banner";
 import { EmptyState } from "@/components/shared/empty-state";
 import { PageHero } from "@/components/shared/page-hero";
-import { getHouseBillingData } from "@/lib/data";
+import { getBillSnapshotById, getHouseBillingData } from "@/lib/data";
 import { formatCurrency, formatMonthLabel } from "@/lib/utils";
 
-export default async function BillingPage({ params }: { params: { houseId: string } }) {
+export default async function BillingPage({
+  params,
+  searchParams
+}: {
+  params: { houseId: string };
+  searchParams?: { draftId?: string };
+}) {
   const data = await getHouseBillingData(params.houseId);
+  const draftBill = searchParams?.draftId
+    ? await getBillSnapshotById(searchParams.draftId, { viewer: data.viewer })
+    : null;
 
   if (!data.house) {
     notFound();
@@ -88,6 +97,7 @@ export default async function BillingPage({ params }: { params: { houseId: strin
         houseId={data.house.id}
         members={data.members}
         latestBill={data.latestBill}
+        draftBill={draftBill}
         disabled={data.viewer.isDemo || !data.members.length}
       />
     </div>

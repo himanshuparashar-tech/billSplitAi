@@ -26,6 +26,7 @@ export interface ReadingInput {
   memberId: string;
   previousReading: number;
   currentReading: number;
+  daysStayed?: number;
   meterPhotoPath?: string | null;
   meterPhotoUrl?: string | null;
 }
